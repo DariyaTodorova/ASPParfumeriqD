@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ASPParfumeriq.Data;
 using ASPParfumeriq.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ASPParfumeriq.Controllers
 {
@@ -47,6 +48,7 @@ namespace ASPParfumeriq.Controllers
         }
 
         // GET: Products/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");

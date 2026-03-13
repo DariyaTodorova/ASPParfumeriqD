@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using ASPParfumeriq.Data;
 using ASPParfumeriq.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ASPParfumeriq.Controllers
 {
+    [Authorize]
     public class OrdersController : Controller
     {
         private readonly ApplicationDbContext _context;
