@@ -1,0 +1,20 @@
+﻿@model IEnumerable<ASPParfumeriq.Models.Order>
+
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<div class="form-page">
+    <div class="form-card">
+
+        <h1>Checkout</h1>
+        <p>Поръчката е приета успешно.</p>
+
+        <h2>Обща сума: €@ViewBag.Total</h2>
+
+        <a asp-controller="Products" asp-action="Index" class="btn btn-primary mt-3">
+            Продължи с пазаруването
+        </a>
+
+    </div>
+</div>

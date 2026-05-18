@@ -1,51 +1,359 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="bg">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ASPParfumeriq</title>
-    <script type="importmap"></script>
+    <title>@ViewData["Title"] - Parfumeriq</title>
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ASPParfumeriq.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ASPParfumeriq</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                    <partial name="_LoginPartial" />
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
+    <header>
+
+        <nav class="navbar navbar-expand-lg luxury-navbar">
+
+            <div class="container">
+
+                <a class="navbar-brand luxury-logo"
+                   asp-controller="Home"
+                   asp-action="Index">
+
+                    <img src="~/images/logo.png"
+                         alt="Parfumeriq Logo"
+                         class="site-logo" />
+
+                </a>
+
+                <button class="navbar-toggler bg-light"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#mainNavbar">
+
+                    <span class="navbar-toggler-icon"></span>
+
+                </button>
+
+                <div class="collapse navbar-collapse"
+                     id="mainNavbar">
+
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                        <!-- HOME -->
+
+                        <li class="nav-item">
+
+                            <a class="nav-link luxury-link"
+                               asp-controller="Home"
+                               asp-action="Index">
+
+                                Начало
+
+                            </a>
+
+                        </li>
+
+                        <!-- ALL PRODUCTS -->
+
+                        <li class="nav-item">
+
+                            <a class="nav-link luxury-link"
+                               asp-controller="Products"
+                               asp-action="Index">
+
+                                Всички
+
+                            </a>
+
+                        </li>
+
+                        <!-- MEN -->
+
+                        <li class="nav-item dropdown">
+
+                            <a class="nav-link luxury-link dropdown-toggle"
+                               href="#"
+                               role="button"
+                               data-bs-toggle="dropdown">
+
+                                Мъжки
+
+                            </a>
+
+                            <ul class="dropdown-menu luxury-dropdown">
+
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="Products"
+                                       asp-action="Index"
+                                       asp-route-category="Мъжки">
+
+                                        Всички мъжки
+
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="Products"
+                                       asp-action="Index"
+                                       asp-route-category="Мъжки"
+                                       asp-route-type="Луксозни">
+
+                                        Луксозни
+
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="Products"
+                                       asp-action="Index"
+                                       asp-route-category="Мъжки"
+                                       asp-route-type="Спортни">
+
+                                        Спортни
+
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="Products"
+                                       asp-action="Index"
+                                       asp-route-category="Мъжки"
+                                       asp-route-type="Дървесни">
+
+                                        Дървесни
+
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                        </li>
+
+                        <!-- WOMEN -->
+
+                        <li class="nav-item dropdown">
+
+                            <a class="nav-link luxury-link dropdown-toggle"
+                               href="#"
+                               role="button"
+                               data-bs-toggle="dropdown">
+
+                                Дамски
+
+                            </a>
+
+                            <ul class="dropdown-menu luxury-dropdown">
+
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="Products"
+                                       asp-action="Index"
+                                       asp-route-category="Дамски">
+
+                                        Всички дамски
+
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="Products"
+                                       asp-action="Index"
+                                       asp-route-category="Дамски"
+                                       asp-route-type="Флорални">
+
+                                        Флорални
+
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="Products"
+                                       asp-action="Index"
+                                       asp-route-category="Дамски"
+                                       asp-route-type="Амбров">
+
+                                        Амбров
+
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="Products"
+                                       asp-action="Index"
+                                       asp-route-category="Дамски"
+                                       asp-route-type="Гурме">
+
+                                        Гурме
+
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                        </li>
+
+                        <!-- GIFT SETS -->
+
+                        <li class="nav-item dropdown">
+
+                            <a class="nav-link luxury-link dropdown-toggle"
+                               href="#"
+                               role="button"
+                               data-bs-toggle="dropdown">
+
+                                Комплекти
+
+                            </a>
+
+                            <ul class="dropdown-menu luxury-dropdown">
+
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="Products"
+                                       asp-action="Index"
+                                       asp-route-category="Подаръчни комплекти">
+
+                                        Всички комплекти
+
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="Products"
+                                       asp-action="Index"
+                                       asp-route-type="Мъжки комплект">
+
+                                        Мъжки комплект
+
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="Products"
+                                       asp-action="Index"
+                                       asp-route-type="Дамски комплект">
+
+                                        Дамски комплект
+
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                        </li>
+
+                        <!-- ABOUT -->
+
+                        <li class="nav-item">
+
+                            <a class="nav-link luxury-link"
+                               asp-controller="Home"
+                               asp-action="About">
+
+                                За нас
+
+                            </a>
+
+                        </li>
+
+                        <!-- CART -->
+
+                        <li class="nav-item">
+
+                            <a class="nav-link luxury-link"
+                               asp-controller="Orders"
+                               asp-action="Cart">
+
+                                🛒 Количка
+
+                            </a>
+
+                        </li>
+
+                        <!-- ADMIN -->
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+
+                                <a class="nav-link luxury-link"
+                                   asp-controller="Orders"
+                                   asp-action="Index">
+
+                                    Admin поръчки
+
+                                </a>
+
+                            </li>
+
+                            <li class="nav-item">
+
+                                <a class="nav-link luxury-link"
+                                   asp-controller="Categories"
+                                   asp-action="Index">
+
+                                    Категории
+
+                                </a>
+
+                            </li>
+
+                            <li class="nav-item">
+
+                                <a class="nav-link luxury-link"
+                                   asp-controller="TypeParfumes"
+                                   asp-action="Index">
+
+                                    Типове
+
+                                </a>
+
+                            </li>
+                        }
+
+                    </ul>
+
+                    <partial name="_LoginPartial" />
+
+                </div>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+    <main class="page-content">
+
+        @RenderBody()
+
+    </main>
+
+    <footer class="luxury-footer">
+
         <div class="container">
-            &copy; 2026 - ASPParfumeriq - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+
+            &copy; 2026 - Parfumeriq | Luxury Perfumes
+
         </div>
+
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>

@@ -1,66 +1,76 @@
 ﻿@model ASPParfumeriq.Models.Product
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Детайли";
 }
 
-<h1>Details</h1>
+<div class="details-container">
 
-<div>
-    <h4>Product</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Category)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Category.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TypeParfume)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TypeParfume.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PhotoUrl)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PhotoUrl)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RegisterOn)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RegisterOn)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <div class="details-image">
+        <img src="@Model.PhotoUrl" alt="@Model.Name" />
+    </div>
+
+    <div class="details-info">
+
+        <h1>@Model.Name</h1>
+
+        <div class="details-price">
+            €@Model.Price
+        </div>
+
+        <p class="details-description">
+            @Model.Description
+        </p>
+
+        <div class="details-meta">
+
+            <p>
+                Количество: @Model.Quantity
+            </p>
+
+            @if (Model.Category != null)
+            {
+                <p>
+                    Категория: @Model.Category.Name
+                </p>
+            }
+
+            @if (Model.TypeParfume != null)
+            {
+                <p>
+                    Тип: @Model.TypeParfume.Name
+                </p>
+            }
+
+        </div>
+
+        <div class="details-buttons">
+
+            @if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                <a asp-controller="Orders"
+                   asp-action="Create"
+                   class="btn btn-primary">
+                    Поръчай
+                </a>
+            }
+
+            <a asp-action="Index"
+               class="btn btn-outline-light">
+                Назад
+            </a>
+
+            @if (User.IsInRole("Admin"))
+            {
+                <a asp-action="Edit"
+                   asp-route-id="@Model.Id"
+                   class="btn btn-warning">
+                    Edit
+                </a>
+            }
+
+        </div>
+
+    </div>
+
 </div>

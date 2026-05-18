@@ -1,77 +1,94 @@
 ﻿@model IEnumerable<ASPParfumeriq.Models.Product>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Продукти";
 }
 
-<h1>Index</h1>
+<section class="products-header">
+    <h1>Нашите парфюми</h1>
+    <p>Избери своя аромат от нашата luxury колекция.</p>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Quantity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TypeParfume)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PhotoUrl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RegisterOn)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TypeParfume.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhotoUrl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RegisterOn)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    @if (User.IsInRole("Admin"))
+    {
+        <a asp-action="Create" class="btn btn-primary">Добави продукт</a>
+    }
+</section>
+
+<section class="products-grid small-products-grid">
+    @foreach (var item in Model)
+    {
+        <div class="product-card small-product-card">
+
+            <a asp-action="Details" asp-route-id="@item.Id" class="product-image-link">
+                <div class="product-image-box small-image-box">
+                    <img src="@item.PhotoUrl" alt="@item.Name" />
+                </div>
+            </a>
+
+            <div class="product-info small-product-info">
+                <h3>@item.Name</h3>
+
+                <p class="product-description">
+                    @item.Description
+                </p>
+
+                <div class="product-meta">
+                    <span>Qty: @item.Quantity</span>
+                    <span>€@item.Price</span>
+                </div>
+
+                <div class="product-actions shop-actions">
+
+                    <a asp-action="Details"
+                       asp-route-id="@item.Id"
+                       class="btn btn-outline-light btn-sm">
+                        Детайли
+                    </a>
+
+                    @if (User.Identity != null && User.Identity.IsAuthenticated)
+                    {
+                        <form asp-controller="Orders"
+                              asp-action="Create"
+                              method="post"
+                              class="buy-form">
+
+                            @Html.AntiForgeryToken()
+
+                            <input type="hidden" name="ProductId" value="@item.Id" />
+                            <input type="hidden" name="OrderQuantity" value="1" />
+
+                            <button type="submit" class="btn btn-primary btn-sm">
+                                🛒 Купи
+                            </button>
+
+                        </form>
+                    }
+                    else
+                    {
+                        <a asp-area="Identity"
+                           asp-page="/Account/Login"
+                           class="btn btn-primary btn-sm">
+                            Купи
+                        </a>
+                    }
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-action="Edit"
+                           asp-route-id="@item.Id"
+                           class="btn btn-warning btn-sm">
+                            Edit
+                        </a>
+
+                        <a asp-action="Delete"
+                           asp-route-id="@item.Id"
+                           class="btn btn-danger btn-sm">
+                            Delete
+                        </a>
+                    }
+
+                </div>
+            </div>
+        </div>
+    }
+</section>

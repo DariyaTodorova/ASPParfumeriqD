@@ -1,0 +1,78 @@
+﻿@model IEnumerable<ASPParfumeriq.Models.Order>
+
+@{
+    ViewData["Title"] = "Количка";
+
+    decimal total = 0;
+}
+
+<div class="cart-page">
+
+    <h1>Моята количка</h1>
+
+    @if (!Model.Any())
+    {
+        <div class="empty-cart">
+            Количката е празна.
+        </div>
+    }
+    else
+    {
+        <div class="cart-grid">
+
+            @foreach (var item in Model)
+            {
+                total += item.Products.Price * item.OrderQuantity;
+
+                <div class="cart-card">
+
+                    <img src="@item.Products.PhotoUrl" />
+
+                    <div class="cart-info">
+
+                        <h3>@item.Products.Name</h3>
+
+                        <p>
+                            €@item.Products.Price
+                        </p>
+
+                        <p>
+                            Количество: @item.OrderQuantity
+                        </p>
+
+                        <p class="cart-total-item">
+                            Общо:
+                            €@(item.Products.Price* item.OrderQuantity)
+                        </p>
+
+                        <div class="cart-buttons">
+
+                            <a asp-action="Delete"
+                               asp-route-id="@item.Id"
+                               class="btn btn-danger">
+                                Премахни
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            }
+
+        </div>
+
+        <div class="cart-summary">
+
+            <h2>
+                Обща сума: €@total
+            </h2>
+
+            <a asp-action="Checkout" class="btn btn-primary cart-checkout">
+                Checkout
+            </a>
+
+        </div>
+    }
+
+</div>

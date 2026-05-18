@@ -1,8 +1,82 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Начало";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section class="hero-section">
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+
+        <img src="~/images/logo.png"
+             class="hero-logo" />
+
+        <h1>Luxury Perfumes</h1>
+
+        <p>
+            Открий най-луксозните мъжки и дамски парфюми.
+        </p>
+
+        <a asp-controller="Products"
+           asp-action="Index"
+           class="btn btn-primary hero-btn">
+
+            Разгледай продуктите
+
+        </a>
+
+    </div>
+
+</section>
+
+<section class="home-cards">
+
+    <div class="card luxury-home-card">
+
+        <img src="~/images/mendior.jpg" />
+
+        <div class="card-body">
+
+            <h3>Dior Collection</h3>
+
+            <p>
+                Premium luxury fragrance.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="card luxury-home-card">
+
+        <img src="~/images/ysl.jpg" />
+
+        <div class="card-body">
+
+            <h3>YSL Collection</h3>
+
+            <p>
+                Modern elegant perfumes.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="card luxury-home-card">
+
+        <img src="~/images/invictus.jpg" />
+
+        <div class="card-body">
+
+            <h3>Versace Collection</h3>
+
+            <p>
+                Strong and unforgettable aroma.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
